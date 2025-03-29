@@ -76,6 +76,19 @@ class CustomNaiveBayes(CustomClassifier):
         return predictions
 
 
+def read_dataset(subset, split): # deze heb je niet echt nodig, maar heb m ff laten staan agz die functie hieronder m ook gebruikt
+    print('***** Reading the dataset *****')
+
+    fname = os.path.join("data", f'{subset}_{split}.csv')
+    inputdf = pd.read_csv(fname, sep=",", encoding='utf-8', header=0)
+
+    texts = inputdf["text_"].to_list()
+    labels = inputdf["label"].to_list()
+
+    assert len(texts) == len(labels), 'Error: there should be equal number of texts and labels.'
+    print(f'Number of samples: {len(texts)}')
+
+    return texts, labels
 
 def train_test(classifier='svm'):
     # Read train and test data and generate tweet list together with label list
@@ -104,9 +117,9 @@ def train_test(classifier='svm'):
     # Generate features from train and test data
     # features: word count features per sentences as a 2D numpy array
     train_feats = cls.get_features(train_data)
-    train_feats = cls.tf_idf(train_feats) # also using the tf-idf was an attempt to improve accuracy, and it improved the accuracy for both models
+    train_feats = cls.tf_idf(train_feats)
     test_feats = cls.get_features(test_data)
-    test_feats = cls.tf_idf(test_feats) # also using the tf-idf was an attempt to improve accuracy, and it improved the accuracy for both models
+    test_feats = cls.tf_idf(test_feats)
 
     cls.fit(train_feats, train_labels)
 
