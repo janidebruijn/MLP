@@ -3,14 +3,18 @@ import os
 
 def construct_set_files():
     '''
-    takes raw text files containing a word per line from /wordlists, converts
+    Takes raw text files containing a word per line from /wordlists, converts
      them to sets, makes set containing overlapping words and removes them
      from both sets, and writes them to `/wordlists/set_[filename].txt`
-    to use the sets, initialise a set like:
+    To use the sets, initialise a set like:
         ```
             import ast
             with open('wordlists/set_english.txt') as f:
                 english_word_set = ast.literal_eval(f.read())
+        ```
+     or for single line initialisation, like in 'dict_baseline.py':
+        ```
+            ast.literal_eval(Path('wordlists/set_english.txt').read_text())
         ```
     '''
 
