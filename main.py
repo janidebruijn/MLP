@@ -1,0 +1,13 @@
+from data_to_sents import data_to_sents
+from dict_setup import construct_set_files
+from dict_baseline import get_dict_baseline
+
+def classifier():
+    data_to_sents(['dev.conll', 'train.conll']) # preprocess data
+    construct_set_files() # construct wordlists
+    report = get_dict_baseline('train_words.npy', 'train_labels.npy')  # get dict baseline
+    print(report) 
+    
+    
+if __name__ == '__main__':
+    classifier()
