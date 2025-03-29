@@ -1,4 +1,5 @@
 # code for naive bayes classifier from assignment 1, needs to be modified to work with our task
+# zit gwn ff wat random code in wat miss handig is
 
 
 import numpy as np
@@ -75,3 +76,44 @@ class CustomNaiveBayes(CustomClassifier):
         return predictions
 
 
+
+def train_test(classifier='svm'):
+    # Read train and test data and generate tweet list together with label list
+    
+    # Choose the data set you plan to work with. Your options:
+    # 'Books_5', 'Clothing_Shoes_and_Jewelry_5', 'Electronics_5'
+    # 'Home_and_Kitchen_5', 'Kindle_Store_5', 'Movies_and_TV_5'
+    # 'Pet_Supplies_5', 'Sports_and_Outdoors_5',
+    # 'Tools_and_Home_Improvement_5', 'Toys_and_Games_5'
+    subset = 'Books_5'
+    train_data, train_labels = read_dataset(subset, 'train')
+    test_data, test_labels = read_dataset(subset, 'test')
+
+    # Preprocess train and test data
+    train_data = preprocess_dataset(train_data)
+    test_data = preprocess_dataset(test_data)
+
+    # Create your custom classifier
+    if classifier == 'svm':
+        cls = SVMClassifier(kernel='linear')
+    elif classifier == 'naive_bayes':
+        cls = CustomNaiveBayes()
+    # elif classifier == 'knn':
+    #     cls = CustomKNN(k=5, distance_metric='cosine')
+
+    # Generate features from train and test data
+    # features: word count features per sentences as a 2D numpy array
+    train_feats = cls.get_features(train_data)
+    train_feats = cls.tf_idf(train_feats) # also using the tf-idf was an attempt to improve accuracy, and it improved the accuracy for both models
+    test_feats = cls.get_features(test_data)
+    test_feats = cls.tf_idf(test_feats) # also using the tf-idf was an attempt to improve accuracy, and it improved the accuracy for both models
+
+    cls.fit(train_feats, train_labels)
+
+    # Predict labels for test data by using trained classifier and features of the test data
+    predicted_test_labels = cls.predict(test_feats)
+
+    # Evaluate the classifier by comparing predicted test labels and true test labels
+    evaluate(test_labels, predicted_test_labels)
+    
+    return cls
