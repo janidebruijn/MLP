@@ -34,7 +34,7 @@ def get_features(sentence_list):
 
 
 def mins(seconds):
-    return f'{seconds // 60} mins and {seconds % 60} secs'
+    return f'{seconds // 60:.0f} mins and {seconds % 60:.2f} secs'
 
 
 start = time.perf_counter()
