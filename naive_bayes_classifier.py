@@ -94,5 +94,5 @@ dev_predictions = [
 print(metrics.classification_report(
     dev_labels, dev_predictions, digits=3, zero_division=0))
 
-time_taken = time.perf_counter() - start
+time_taken = start - time.perf_counter()
 print(f'Took {mins(time_taken)}')
