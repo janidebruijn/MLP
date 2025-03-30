@@ -85,8 +85,7 @@ dev_feats = pd.concat([
 indexes = [[index[0], index[-1] + 1] for index
            in np.array_split(range(dev_feats.shape[0] + 1),
                              len(dev_feats) // 2500)]
-print(indexes)
-print(dev_feats.shape[0])
+
 dev_predictions = [
     prediction for start, end in tqdm(indexes, desc='Predicting')
     for prediction in model.predict(dev_feats[start:end])
