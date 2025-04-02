@@ -126,7 +126,7 @@ class_weights_dict = {
 }
 
 # set batch size
-# currently based on virtual memory size of 16 Gb
+# setting too high generates large dense arrays
 batch_size = 5000
 # get batch start/end indexes
 indexes = [[index[0], index[-1] + 1] for index
