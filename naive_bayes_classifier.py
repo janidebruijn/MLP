@@ -83,6 +83,7 @@ def get_features(sentence_list):
     )
     return df
 
+
 def prediction():
     # start timer
     start = time.time()
@@ -130,8 +131,8 @@ def prediction():
     batch_size = 5000
     # get batch start/end indexes
     indexes = [[index[0], index[-1] + 1] for index
-            in np.array_split(range(train_feats.shape[0] + 1),
-                                len(train_feats) // batch_size)]
+               in np.array_split(range(train_feats.shape[0] + 1),
+                                 len(train_feats) // batch_size)]
     # partial fit to prevent too large dense arrays being made
     for start, end in tqdm(indexes, desc='Fitting'):
         model.partial_fit(
@@ -151,7 +152,8 @@ def prediction():
     # get dev features
     dev_feats = get_features(dev_sents[:n_sents])
     # unpack label sentences to individual labels
-    dev_labels = [label for sent in dev_labels_sents[:n_sents] for label in sent]
+    dev_labels = [label for sent in dev_labels_sents[:n_sents]
+                  for label in sent]
 
     # transform dev words to vectors
     dev_word_vectors = vectoriser.transform(dev_feats['word'])
@@ -164,8 +166,8 @@ def prediction():
 
     # get batch start/end indexes
     indexes = [[index[0], index[-1] + 1] for index
-            in np.array_split(range(dev_feats.shape[0] + 1),
-                                len(dev_feats) // batch_size)]
+               in np.array_split(range(dev_feats.shape[0] + 1),
+                                 len(dev_feats) // batch_size)]
 
     # predict dev words
     dev_predictions = [
@@ -180,4 +182,3 @@ def prediction():
     # print time taken
     time_taken = time.time() - start
     print(f'Took {time_taken // 60} minutes and {time_taken % 60} seconds')
-
