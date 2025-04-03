@@ -50,7 +50,7 @@ def get_features(sentence_list):
     data = []
     # for sentence in sentence list with tqdm progress bar
     for sent in tqdm(sentence_list, desc='Getting features'):
-    # add features to list
+        # add features to list
         data += [
             [
                 word,
