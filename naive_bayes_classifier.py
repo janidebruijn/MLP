@@ -86,7 +86,7 @@ def get_features(sentence_list):
 
 def prediction():
     # start timer
-    start = time.time()
+    start_time = time.time()
 
     # load train sentences and labels
     train_sents = np.load('train_words.npy', allow_pickle=True)
@@ -180,5 +180,5 @@ def prediction():
         dev_labels, dev_predictions, digits=3, zero_division=0))
 
     # print time taken
-    time_taken = time.time() - start
+    time_taken = time.time() - start_time
     print(f'Took {time_taken // 60} minutes and {time_taken % 60} seconds')
