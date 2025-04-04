@@ -6,7 +6,7 @@ from naive_bayes_classifier import prediction
 def classifier():
     data_to_sents(['dev.conll', 'train.conll']) # preprocess data
     construct_set_files() # construct wordlists
-    report = get_dict_baseline('train_words.npy', 'train_labels.npy')  # get dict baseline
+    report = get_dict_baseline('dev_words.npy', 'dev_labels.npy')  # get dict baseline
     print(f'Baseline report:\n{report}') 
     prediction() # naive bayes classifier
     
