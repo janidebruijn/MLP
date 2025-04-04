@@ -65,4 +65,4 @@ def get_dict_baseline(sents_path, true_label_sents_path):
 
 
 if __name__ == '__main__':
-    print(get_dict_baseline('train_words.npy', 'train_labels.npy'))
+    print(get_dict_baseline('dev_words.npy', 'dev_labels.npy'))
