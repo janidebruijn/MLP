@@ -1,10 +1,9 @@
-# MLP
-## MLP Final Project
+# MLP Final Project
 Jani de Bruijn, Manon Kooning, Joost Oving, Thomas Thiescheffer
 
-# Starting guide
-## Install required packages
+## Starting guide
+### 1. Install required packages
 ```pip install -r requirements.txt```
 
-## run main.py
+### 2. Run main.py
 ```python3 main.py```
