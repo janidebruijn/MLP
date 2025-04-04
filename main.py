@@ -8,9 +8,9 @@ def classifier():
     construct_set_files() # construct wordlists
     report = get_dict_baseline('train_words.npy', 'train_labels.npy')  # get dict baseline
     print(f'Baseline report:\n{report}') 
-
+    prediction() # naive bayes classifier
     
     
 if __name__ == '__main__':
     classifier()
-    prediction()
+
